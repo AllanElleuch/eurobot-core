@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Nodejs core embedded on a linux board of our main robot for Eurobot Challenge",
   "scripts": {
-    "start": "iojs build/src/main.js",
+    "start": "node build/src/main.js",
     "deploy": "sh scripts/deploy.sh",
     "postinstall": "sh scripts/install.sh",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sh scripts/install.sh"
+
   },
   "repository": {
     "type": "git",
@@ -20,22 +22,23 @@
   "homepage": "https://github.com/RobotikUTT/eurobot-core",
   "dependencies": {
     "express": "^4.11.2",
-    "i2c-bus": "^0.11.1",
+    "i2c-bus": "^1.2.2",
     "native-promisify": "^1.2.0",
-    "nconf": "^0.7.1",
-    "node-robot": "^0.2.0",
+    "nconf": "^0.8.4",
     "node-static": "^0.7.6",
     "promise-queue": "^2.1.1",
     "socket.io": "^1.3.4",
     "tmx-parser": "^1.2.3",
-    "winston": "^0.9.0"
+    "winston": "^2.3.1",
+    "serialport": "^2.1.2",
+    "underscore": "^1.6.0"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-babel": "^4.0.0",
-    "gulp-nodemon": "^1.0.5",
-    "gulp-plumber": "^0.6.6",
-    "gulp-sourcemaps": "^1.3.0",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sourcemaps": "^2.6.0",
     "gulp-watch": "^4.1.1",
     "nodemon": "^1.3.7"
   },
