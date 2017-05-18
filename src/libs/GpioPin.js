@@ -51,7 +51,7 @@ class GpioPin {
      * @param mode - 'out' or 'in'
      */
     mode(mode) {
-        return new Promise((resolve, reject) => 
+        return new Promise((resolve, reject) =>
         {
 
             var execCallback = function (error, stdout, stderr)
@@ -75,7 +75,7 @@ class GpioPin {
      * @param level - 'high' or 'low'
      */
     write(level) {
-        return new Promise((resolve, reject) => 
+        return new Promise((resolve, reject) =>
         {
             var execCallback = function (error, stdout, stderr)
             {
@@ -100,7 +100,7 @@ class GpioPin {
      * @return in then promise the pin value 'high' or 'low'
      */
     read(level) {
-        return new Promise((resolve, reject) => 
+        return new Promise((resolve, reject) =>
         {
             var execCallback = function (error, stdout, stderr)
             {

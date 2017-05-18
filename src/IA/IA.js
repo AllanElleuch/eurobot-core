@@ -1,6 +1,6 @@
 import * as util from 'util';
 
-let Scheduler = require('node-robot').Scheduler;
+let Scheduler = require('../node-robot').Scheduler;
 let log       = require('../libs/logger').getLogger(module);
 let Button    = require('../io/Button');
 let GpioPin   = require('../libs/GpioPin');

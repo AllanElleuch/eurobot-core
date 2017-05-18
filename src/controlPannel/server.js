@@ -63,7 +63,7 @@ let forceSensorUpdate = true;
 
 io.on('connection', function(socket) {
     log.info('[WEB] New client connected');
-   
+
     forceMotorUpdate = true;
     forceClampUpdate = true;
     forceSensorUpdate = true;

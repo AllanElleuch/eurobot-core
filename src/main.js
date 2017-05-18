@@ -12,17 +12,15 @@ server
     .then(function() {
         log.info('[WEB] Server listening on *:8080');
         let modules = {};
+        // TODO : décomenter quand prêt pour moteur et ia 
+        // let motorController = new MotorController(0x02, 15);
+        // modules.motorController = motorController;
+        //
+        // let clampController = new ClampController(0x03, 13);
+        // modules.clampController = clampController;
 
-        let motorController = new MotorController(0x02, 15);
-        modules.motorController = motorController;
 
-        let clampController = new ClampController(0x03, 13);
-        modules.clampController = clampController;
-
-        // let sensorsController = new SensorsController(0x04, 11);
-        // modules.sensorsController = sensorsController;
-
-        let ia = new IA(modules);
+        // let ia = new IA(modules);
         server.bind(modules);
     })
     .catch(function(err) {
