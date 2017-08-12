@@ -25,7 +25,7 @@ Scheduler.prototype.sequence = function(fn){
 Scheduler.prototype.schedule = function(seq){
   this.sequences.push(seq);
   if(!this.active && this.started) this._runNext();
-  
+
 }
 
 Scheduler.prototype.start = function(){

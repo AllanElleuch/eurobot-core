@@ -1,9 +1,11 @@
 import * as util from 'util';
+import socketIO from 'socket.io';
 
 let Scheduler = require('../node-robot').Scheduler;
 let log       = require('../libs/logger').getLogger(module);
-let Button    = require('../io/Button');
-let GpioPin   = require('../libs/GpioPin');
+
+// let Button    = require('../io/Button');
+// let GpioPin   = require('../libs/GpioPin');
 
 
 class IA {
@@ -15,16 +17,17 @@ class IA {
      */
     constructor(modules) {
         // Set modules
-        this.motorController = modules.motorController;
-        this.clampController = modules.clampController;
+        // TODO : a réactiver quand moteur prêt
+        // this.motorController = modules.motorController;
+        // this.clampController = modules.clampController;
         // this.sensorsController = modules.sensorsController;
 
         // IO
-        this.startButton = new Button(23, 'high');
-        this.sideSelector = new GpioPin(12);
-
-        this.scheduler = new Scheduler();
-        this.actualGoTo = 0;
+        // this.startButton = new Button(23, 'high');
+        // this.sideSelector = new GpioPin(12);
+        //
+        // this.scheduler = new Scheduler();
+        // this.actualGoTo = 0;
 
         /**
          * Events
@@ -40,27 +43,37 @@ class IA {
          * Sequences
          */
 
-         // Called on start
-        this.mainSequence = this.scheduler.sequence((done) => {
+        
+         this.sensorsController.on('stop', () => {
+             log.warn('Obstacle detected');
 
-            // Determine the start zone
-            this.sideSelector.read()
-                .then((level) => {
-                    if (level === 'high') {
-                        // Yellow side
-                        this.yellowSequence.schedule();
-                    }
-                    else if (level === 'low') {
-                        // Green side
-                        this.greenSequence.schedule();
-                    }
+             // this.motorController.stop();
+           }
+         )
+
+         // Called on start
+        // this.mainSequence = this.scheduler.sequence((done) => {
+        //
+        //     // Determine the start zone
+        //     this.sideSelector.read()
+        //         .then((level) => {
+        //             if (level === 'high') {
+        //                 // Yellow side
+        //                 this.yellowSequence.schedule();
+        //             }
+        //             else if (level === 'low') {
+        //                 // Green side
+        //                 this.greenSequence.schedule();
+        //             }
 
                     // this.sensorsController.previousDataState = 'low';
 
                     // Register sequence on sensor alert
                     // this.sensorsController.on('stop', () => {
                     //     log.warn('Obstacle detected');
-                    //     this.motorController.stop();
+                    //     // this.motorController.stop();
+                    //   }
+                    // )
 
                     //     this.scheduler.interrupt(() => {
                     //         // Schedule reaction sequence
@@ -81,14 +94,14 @@ class IA {
                     //     });
                     // });
 
-                    done();
-                })
-                .catch((err) => {
-                    log.error('Side selector error: ');
-                    log.error(err.stack);
-                    done();
-                });
-        });
+        //             done();
+        //         })
+        //         .catch((err) => {
+        //             log.error('Side selector error: ');
+        //             log.error(err.stack);
+        //             done();
+        //         });
+        // });
 
 
         // Called on yellow side

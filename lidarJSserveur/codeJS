@@ -1,0 +1,22 @@
+var i2c = require('i2c-bus'),
+  i2c1 = i2c.openSync(1);
+
+  var l= [00, 41, 01, 7c, 02, 72, 02, 64, 02, 03, 00, 7e, 00, 7d, 00, 67, 08, 27]
+
+ const buffer = new Buffer(18);
+  i2c1.writeByteSync(0x55, 0x00, 0x00);
+
+while(i2c1.readI2cBlockSync(0x55, 0X00, 18, buffer)){
+console.log(buffer);
+
+var res = array(8); // tableau en cm des distances
+for (var b = 0; b < array.length; b++) { // on va changer les 18 bytes en info int dans un tableau de taille 8
+
+res[b]= buffer[b*2]*256+buffer[b*2+1];
+
+}
+console.log(res);
+
+}
+console.log(buffer);
+i2c1.closeSync();
